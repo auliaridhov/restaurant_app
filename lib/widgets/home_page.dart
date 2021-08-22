@@ -6,9 +6,7 @@ import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_app/data/api/api_service.dart';
 import 'package:restaurant_app/provider/restaurant_provider.dart';
-import 'package:restaurant_app/provider/search_restaurant_provider.dart';
 import 'package:restaurant_app/ui/list_restauran_page.dart';
-import 'package:restaurant_app/ui/search_page.dart';
 import 'package:restaurant_app/widgets/platform_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -27,7 +25,7 @@ class _HomePageState extends State<HomePage> {
       create: (_) => RestaurantProvider(apiService: ApiService()),
       child: RestauranListPage(),
     ),
-    SearchPage(),
+//    SearchPage(),
 
   ];
 
@@ -36,10 +34,10 @@ class _HomePageState extends State<HomePage> {
       icon: Icon(Platform.isIOS ? CupertinoIcons.news : Icons.public),
       label: _restauranText,
     ),
-    BottomNavigationBarItem(
-      icon: Icon(Platform.isIOS ? CupertinoIcons.search : Icons.search),
-      label: _searchText,
-    ),
+//    BottomNavigationBarItem(
+//      icon: Icon(Platform.isIOS ? CupertinoIcons.search : Icons.search),
+//      label: _searchText,
+//    ),
   ];
 
   void _onBottomNavTapped(int index) {
@@ -51,11 +49,11 @@ class _HomePageState extends State<HomePage> {
   Widget _buildAndroid(BuildContext context) {
     return Scaffold(
       body: _listWidget[_bottomNavIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _bottomNavIndex,
-        items: _bottomNavBarItems,
-        onTap: _onBottomNavTapped,
-      ),
+//      bottomNavigationBar: BottomNavigationBar(
+//        currentIndex: _bottomNavIndex,
+//        items: _bottomNavBarItems,
+//        onTap: _onBottomNavTapped,
+//      ),
     );
   }
 
