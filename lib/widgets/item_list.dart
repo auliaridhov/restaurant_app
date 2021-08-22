@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/common/image_url.dart';
-import 'package:restaurant_app/data/model/list_restaurant.dart';
+import 'package:restaurant_app/data/model/restaurant.dart';
+
 import 'package:restaurant_app/ui/detail_page.dart';
 
 class ItemList extends StatelessWidget {

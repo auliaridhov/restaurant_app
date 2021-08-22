@@ -6,14 +6,14 @@ import 'package:restaurant_app/data/model/search_restaurant.dart';
 
 enum ResultState { Loading, NoData, HasData, Error }
 
-class RestaurantProvider extends ChangeNotifier {
+class SearchRestaurantProvider extends ChangeNotifier {
   final ApiService apiService;
+  final String query;
 
-  RestaurantProvider({this.apiService}) {
-    _fetchAllRestaurant();
+  SearchRestaurantProvider({this.apiService, this.query}) {
+    _fetchSearchRestaurant(query);
   }
 
-  RestaurantsResult _articlesResult;
   SearchRestaurantsResult _searchResult;
 
   ResultState _state;
@@ -21,31 +21,11 @@ class RestaurantProvider extends ChangeNotifier {
 
   String get message => _message;
 
-  RestaurantsResult get result => _articlesResult;
+
   SearchRestaurantsResult get searchResult => _searchResult;
 
   ResultState get state => _state;
 
-  Future<dynamic> _fetchAllRestaurant() async {
-    try {
-      _state = ResultState.Loading;
-      notifyListeners();
-      final article = await apiService.listRestaurant();
-      if (article.restaurants.isEmpty) {
-        _state = ResultState.NoData;
-        notifyListeners();
-        return _message = 'Empty Data';
-      } else {
-        _state = ResultState.HasData;
-        notifyListeners();
-        return _articlesResult = article;
-      }
-    } catch (e) {
-      _state = ResultState.Error;
-      notifyListeners();
-      return _message = 'Error --> $e';
-    }
-  }
 
   Future<dynamic> _fetchSearchRestaurant(String query) async {
     try {

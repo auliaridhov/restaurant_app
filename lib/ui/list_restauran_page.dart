@@ -35,7 +35,7 @@ class RestauranListPage extends StatelessWidget {
   Widget _buildAndroid(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('News App'),
+        title: Text('Restaurant App'),
       ),
       body: _buildList(),
     );

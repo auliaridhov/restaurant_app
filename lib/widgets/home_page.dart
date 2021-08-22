@@ -6,6 +6,7 @@ import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_app/data/api/api_service.dart';
 import 'package:restaurant_app/provider/restaurant_provider.dart';
+import 'package:restaurant_app/provider/search_restaurant_provider.dart';
 import 'package:restaurant_app/ui/list_restauran_page.dart';
 import 'package:restaurant_app/ui/search_page.dart';
 import 'package:restaurant_app/widgets/platform_widget.dart';
@@ -26,7 +27,11 @@ class _HomePageState extends State<HomePage> {
       create: (_) => RestaurantProvider(apiService: ApiService()),
       child: RestauranListPage(),
     ),
-    SearchPage(),
+    ChangeNotifierProvider<SearchRestaurantProvider>(
+      create: (_) => SearchRestaurantProvider(apiService: ApiService(), query: "makan"),
+      child: SearchPage(),
+    ),
+
   ];
 
   List<BottomNavigationBarItem> _bottomNavBarItems = [
@@ -35,7 +40,7 @@ class _HomePageState extends State<HomePage> {
       label: _restauranText,
     ),
     BottomNavigationBarItem(
-      icon: Icon(Platform.isIOS ? CupertinoIcons.settings : Icons.settings),
+      icon: Icon(Platform.isIOS ? CupertinoIcons.search : Icons.search),
       label: _searchText,
     ),
   ];
