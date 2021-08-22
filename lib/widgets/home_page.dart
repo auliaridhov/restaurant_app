@@ -27,10 +27,7 @@ class _HomePageState extends State<HomePage> {
       create: (_) => RestaurantProvider(apiService: ApiService()),
       child: RestauranListPage(),
     ),
-    ChangeNotifierProvider<SearchRestaurantProvider>(
-      create: (_) => SearchRestaurantProvider(apiService: ApiService(), query: "makan"),
-      child: SearchPage(),
-    ),
+    SearchPage(),
 
   ];
 

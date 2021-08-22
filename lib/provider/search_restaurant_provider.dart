@@ -47,4 +47,25 @@ class SearchRestaurantProvider extends ChangeNotifier {
       return _message = 'Error --> $e';
     }
   }
+
+  Future<dynamic> search(String item) async{
+    try {
+      _state = ResultState.Loading;
+      notifyListeners();
+      final rest = await apiService.searchRestaurant(query);
+      if (rest.restaurants.isEmpty) {
+        _state = ResultState.NoData;
+        notifyListeners();
+        return _message = 'Empty Data';
+      } else {
+        _state = ResultState.HasData;
+        notifyListeners();
+        return _searchResult = rest;
+      }
+    } catch (e) {
+      _state = ResultState.Error;
+      notifyListeners();
+      return _message = 'Error --> $e';
+    }
+  }
 }
