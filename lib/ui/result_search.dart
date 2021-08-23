@@ -25,7 +25,6 @@ class SearchResult extends StatelessWidget {
               shrinkWrap: true,
               itemCount: state.searchResult.restaurants.length,
               itemBuilder: (context, index) {
-                var article = state.searchResult.restaurants[index];
                 return ItemList(list: state.searchResult.restaurants);
               },
             );

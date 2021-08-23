@@ -1,43 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/data/api/api_service.dart';
-import 'package:restaurant_app/data/model/list_restaurant.dart';
-import 'package:restaurant_app/data/model/search_restaurant.dart';
+import 'package:restaurant_app/data/model/detail_restaurant.dart';
 
 enum ResultState { Loading, NoData, HasData, Error }
 
-class RestaurantProvider extends ChangeNotifier {
+class DetailRestaurantProvider extends ChangeNotifier {
   final ApiService apiService;
+  final String id;
 
-  RestaurantProvider({this.apiService}) {
-    _fetchAllRestaurant();
+  DetailRestaurantProvider({this.apiService, this.id}) {
+    _fetchDertailRestaurant(id);
   }
 
-  RestaurantsResult _articlesResult;
-  SearchRestaurantsResult _searchResult;
+  DetailRestaurantsResult _detailResult;
 
   ResultState _state;
   String _message = '';
 
   String get message => _message;
 
-  RestaurantsResult get result => _articlesResult;
-  SearchRestaurantsResult get searchResult => _searchResult;
+
+  DetailRestaurantsResult get detailResult => _detailResult;
 
   ResultState get state => _state;
 
-  Future<dynamic> _fetchAllRestaurant() async {
+
+  Future<dynamic> _fetchDertailRestaurant(String id) async {
     try {
       _state = ResultState.Loading;
       notifyListeners();
-      final article = await apiService.listRestaurant();
-      if (article.restaurants.isEmpty) {
+      final rest = await apiService.detailRestaurant(id);
+      if (rest.restaurant == null) {
         _state = ResultState.NoData;
         notifyListeners();
         return _message = 'Empty Data';
       } else {
         _state = ResultState.HasData;
         notifyListeners();
-        return _articlesResult = article;
+        return _detailResult = rest;
       }
     } catch (e) {
       _state = ResultState.Error;
@@ -45,5 +45,4 @@ class RestaurantProvider extends ChangeNotifier {
       return _message = 'Upps! Cant reach data from server, please check your connection and try again.';
     }
   }
-
 }

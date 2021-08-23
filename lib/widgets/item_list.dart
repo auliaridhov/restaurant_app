@@ -20,7 +20,7 @@ class ItemList extends StatelessWidget {
           onTap: (){
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => DetailScreen(data: list[i])),
+              MaterialPageRoute(builder: (context) => DetailPage(id: list[i].id)),
             );
           },
           child: Container(

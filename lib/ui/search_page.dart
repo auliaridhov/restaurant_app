@@ -1,10 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:restaurant_app/data/api/api_service.dart';
-import 'package:restaurant_app/provider/search_restaurant_provider.dart';
 import 'package:restaurant_app/ui/result_search.dart';
-import 'package:restaurant_app/widgets/item_list.dart';
 import 'package:restaurant_app/widgets/platform_widget.dart';
 
 class SearchPage extends StatelessWidget {

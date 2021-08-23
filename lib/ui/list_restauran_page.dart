@@ -6,7 +6,6 @@ import 'package:restaurant_app/ui/result_search.dart';
 import 'package:restaurant_app/widgets/item_list.dart';
 import 'package:restaurant_app/widgets/platform_widget.dart';
 
-
 class RestauranListPage extends StatelessWidget {
 
   Widget _buildList(BuildContext context) {
@@ -42,7 +41,6 @@ class RestauranListPage extends StatelessWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: state.result.restaurants.length,
                   itemBuilder: (context, index) {
-                    var article = state.result.restaurants[index];
                     return ItemList(list: state.result.restaurants);
                   },
                 );
