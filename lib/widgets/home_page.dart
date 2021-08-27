@@ -3,14 +3,12 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:provider/provider.dart';
-import 'package:restaurant_app/data/api/api_service.dart';
-import 'package:restaurant_app/provider/restaurant_provider.dart';
+import 'package:restaurant_app/ui/bookmark_page.dart';
 import 'package:restaurant_app/ui/list_restauran_page.dart';
+import 'package:restaurant_app/ui/setting_page.dart';
 import 'package:restaurant_app/widgets/platform_widget.dart';
 
 class HomePage extends StatefulWidget {
-
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -18,15 +16,13 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _bottomNavIndex = 0;
   static const String _restauranText = 'Restarant';
-  static const String _searchText = 'Search';
+  static const String _bookmarkText = 'Bookmarks';
+  static const String _settingText = 'Setting';
 
   List<Widget> _listWidget = [
-    ChangeNotifierProvider<RestaurantProvider>(
-      create: (_) => RestaurantProvider(apiService: ApiService()),
-      child: RestauranListPage(),
-    ),
-//    SearchPage(),
-
+    RestauranListPage(),
+    BookmarkPage(),
+    SettingPage()
   ];
 
   List<BottomNavigationBarItem> _bottomNavBarItems = [
@@ -34,10 +30,14 @@ class _HomePageState extends State<HomePage> {
       icon: Icon(Platform.isIOS ? CupertinoIcons.news : Icons.public),
       label: _restauranText,
     ),
-//    BottomNavigationBarItem(
-//      icon: Icon(Platform.isIOS ? CupertinoIcons.search : Icons.search),
-//      label: _searchText,
-//    ),
+    BottomNavigationBarItem(
+      icon: Icon(Platform.isIOS ? CupertinoIcons.bookmark_solid : Icons.bookmark_outlined),
+      label: _bookmarkText,
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Platform.isIOS ? CupertinoIcons.settings : Icons.settings),
+      label: _settingText,
+    ),
   ];
 
   void _onBottomNavTapped(int index) {
@@ -49,11 +49,11 @@ class _HomePageState extends State<HomePage> {
   Widget _buildAndroid(BuildContext context) {
     return Scaffold(
       body: _listWidget[_bottomNavIndex],
-//      bottomNavigationBar: BottomNavigationBar(
-//        currentIndex: _bottomNavIndex,
-//        items: _bottomNavBarItems,
-//        onTap: _onBottomNavTapped,
-//      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _bottomNavIndex,
+        items: _bottomNavBarItems,
+        onTap: _onBottomNavTapped,
+      ),
     );
   }
 
@@ -74,4 +74,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-

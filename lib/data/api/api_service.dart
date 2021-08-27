@@ -10,6 +10,7 @@ class ApiService {
   static final String _list = 'list';
   static final String _search = 'search?q=';
   static final String _detail = 'detail/';
+
   Future<RestaurantsResult> listRestaurant() async {
     final response = await http.get(Uri.parse(_baseUrl + _list));
     if (response.statusCode == 200) {
