@@ -30,7 +30,7 @@ class BookmarkPage extends StatelessWidget {
   Widget _buildAndroid(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Restaurant App'),
+        title: Text('Favorite Restaurant'),
       ),
       body: _buildList(context),
     );
@@ -39,7 +39,7 @@ class BookmarkPage extends StatelessWidget {
   Widget _buildIos(BuildContext context) {
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
-        middle: Text('Restaurant App'),
+        middle: Text('Favorite Restaurant'),
         transitionBetweenRoutes: false,
       ),
       child: _buildList(context),

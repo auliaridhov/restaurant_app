@@ -3,7 +3,7 @@ import 'package:restaurant_app/common/image_url.dart';
 import 'package:restaurant_app/data/model/detail_restaurant.dart';
 
 class DetailScreen extends StatelessWidget {
-  Restaurant data;
+  final Restaurant data;
 
   DetailScreen({this.data});
 

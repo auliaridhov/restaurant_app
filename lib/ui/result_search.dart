@@ -11,7 +11,6 @@ class SearchResult extends StatelessWidget {
 
   const SearchResult({this.query, Key key}) : super(key: key);
 
-  @override
   Widget _buildList(BuildContext context) {
     return ChangeNotifierProvider<SearchRestaurantProvider>(
       create: (_) =>

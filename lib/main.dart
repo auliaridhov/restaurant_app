@@ -36,10 +36,12 @@ Future<void> main() async{
   await _notificationHelper.initNotifications(flutterLocalNotificationsPlugin);
 
 
+
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(

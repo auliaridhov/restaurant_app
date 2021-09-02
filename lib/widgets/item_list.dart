@@ -19,7 +19,6 @@ class ItemList extends StatelessWidget {
           future: provider.isBookmarked(list.id),
           builder: (context, snapshot) {
             var isBookmarked = snapshot.data ?? false;
-
             return GestureDetector(
               onTap: () {
                 Navigator.push(
@@ -69,13 +68,13 @@ class ItemList extends StatelessWidget {
                           ),
                           isBookmarked
                               ? IconButton(
-                                  icon: Icon(Icons.bookmark),
+                                  icon: Icon(Icons.favorite),
                                   color: Theme.of(context).accentColor,
                                   onPressed: () =>
                                       provider.removeBookmark(list.id),
                                 )
                               : IconButton(
-                                  icon: Icon(Icons.bookmark_border),
+                                  icon: Icon(Icons.favorite_border),
                                   color: Theme.of(context).accentColor,
                                   onPressed: () => provider.addBookmark(list),
                                 ),
